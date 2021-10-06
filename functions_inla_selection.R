@@ -11,6 +11,11 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                       derivative = FALSE, 
                       forward = TRUE) 
 {
+  
+  if (min(samp_times1)>0){
+    warning("Warning: group 1 was not sampled at 0, model may not be identifiable",immediate. = T)
+  }
+  
   #If parSel is FALSE, I am using adaSel
   phy1 <- summarize_phylo(tree1)
   phy1$samp_times <- phy1$samp_times + min(samp_times1)
@@ -42,28 +47,7 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                              data.frame(time = ID, mean = exp(-mean), sd = sd * exp(-mean), 
                                         quant0.025 = exp(-`0.975quant`), quant0.5 = exp(-`0.5quant`), 
                                         quant0.975 = exp(-`0.025quant`)))
-      if (parSel){
-      if (beta0_remove==FALSE){
-          result$beta0 <- result$result$summary.fixed["beta0", "0.5quant"]
-          result$beta0summ <- result$result$summary.fixed["beta0",]
-          rownames(result$beta0summ) <- "Beta0"
-          result$beta0post <- result$result$marginals.fixed$beta0
-          }
-          result$beta1 <- result$result$summary.hyperpar[2, "0.5quant"]
-          result$beta1summ <- result$result$summary.hyperpar[2,]
-          rownames(result$beta1summ) <- "Beta1"
-          result$beta1post <- result$result$marginals.hyperpar$`Beta for time2`
-      } else {
-        result$selInt <- exp(result$result$summary.random$time3$`0.5quant`)
-        result$selIntmean <- exp(result$result$summary.random$time3$mean)
-        result$selInt975 <- exp(result$result$summary.random$time3$`0.975quant`)
-        result$selInt025 <- exp(result$result$summary.random$time3$`0.025quant`)
-        result$selIntsummary <- with(result$result$summary.random$time3,
-                                      data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
-                                                 quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
-                                                 quant0.975 = exp(`0.975quant`)))
-  }
-  } else {
+    } else {
     result$effpop <- exp(-result$result$summary.random$time1$`0.5quant`)
     result$effpopmean <- exp(-result$result$summary.random$time1$mean)
     result$effpop975 <- exp(-result$result$summary.random$time1$`0.025quant`)
@@ -72,7 +56,39 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                            data.frame(time = ID, mean = exp(-mean), sd = sd * exp(-mean), 
                                       quant0.025 = exp(-`0.975quant`), quant0.5 = exp(-`0.5quant`), 
                                       quant0.975 = exp(-`0.025quant`)))
-  }
+    result$sampInt <- exp(result$result$summary.random$time3b$`0.5quant`)
+    result$sampIntmean <- exp(result$result$summary.random$time3b$mean)
+    result$sampInt975 <- exp(result$result$summary.random$time3b$`0.975quant`)
+    result$sampInt025 <- exp(result$result$summary.random$time3b$`0.025quant`)
+    result$sampIntsummary <- with(result$result$summary.random$time3b,
+                                 data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
+                                            quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
+                                            quant0.975 = exp(`0.975quant`)))
+    }
+    if (parSel){
+      if (beta0_remove==FALSE){
+        result$beta0 <- result$result$summary.fixed["beta0", "0.5quant"]
+        result$beta0summ <- result$result$summary.fixed["beta0",]
+        rownames(result$beta0summ) <- "Beta0"
+        result$beta0post <- result$result$marginals.fixed$beta0
+      }
+      result$beta1 <- result$result$summary.hyperpar[2, "0.5quant"]
+      result$beta1summ <- result$result$summary.hyperpar[2,]
+      rownames(result$beta1summ) <- "Beta1"
+      result$beta1post <- result$result$marginals.hyperpar$`Beta for time2`
+    } else {
+      result$selInt <- exp(result$result$summary.random$time2b$`0.5quant`)
+      result$selIntmean <- exp(result$result$summary.random$time2b$mean)
+      result$selInt975 <- exp(result$result$summary.random$time2b$`0.975quant`)
+      result$selInt025 <- exp(result$result$summary.random$time2b$`0.025quant`)
+      result$selIntsummary <- with(result$result$summary.random$time2b,
+                                   data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
+                                              quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
+                                              quant0.975 = exp(`0.975quant`)))
+    }  
+  
+  
+  
   return(result)
 }
 
@@ -144,7 +160,8 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
   
   
   if (!preferential){
-    data <- joint_coal_stats(coal_data1 = coal_data1, coal_data2 = coal_data2)
+    data <- joint_coal_stats(coal_data1 = coal_data1, coal_data2 = coal_data2,
+                             samp_times2=samp_times2,grid=grid)
   } else {
     data <- joint_coal_stats_adasel(coal_data1 = coal_data1, coal_data2 = coal_data2, samp_data1 = samp_data1, samp_data2 = samp_data2)
   
@@ -173,10 +190,10 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
   } else {
     if (!preferential){
       data$beta0<-NULL
-      data$time3=data$time2
+      data$time2b=data$time2
       formula <- Y ~ -1 +
         f(time, model="rw1", hyper = hyper, constr = FALSE) +
-        f(time2, w, copy="time") + f(time3, model="rw1",hyper = hyper, constr=FALSE)
+        f(time2, w, copy="time") + f(time2b, model="rw1",hyper = hyper, constr=FALSE)
     } else {
       data$beta0<-NULL
       data$time2b=data$time2
@@ -224,8 +241,13 @@ identify_off_grid <- function(coal_data,samp_times,coal_times)
 }
 
 
-joint_coal_stats <- function(coal_data1, coal_data2)
+joint_coal_stats <- function(coal_data1, coal_data2,samp_times2,grid)
 {
+  
+  ##Here, I ensure that the field on the second population starts from the minimum sampling points
+  id.field <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
+  coal_data2 <- coal_data2[(id.field+1):nrow(coal_data2),]
+  
   n1 <- length(coal_data1$time) #Here are the midpts 
   n2 <- length(coal_data2$time) #
   beta0 <- c(rep(0, n1), rep(1, n2))
@@ -247,6 +269,10 @@ joint_coal_stats <- function(coal_data1, coal_data2)
 
 joint_coal_stats_adasel <- function(coal_data1, coal_data2,samp_data1,samp_data2)
 {
+  id.field2 <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
+  coal_data2 <- coal_data2[(id.field2+1):nrow(coal_data2),]
+  samp_data2 <- samp_data2[(id.field2+1):nrow(samp_data2),]
+  
   n1 <- length(coal_data1$time) #Here are the midpts 
   n2 <- length(coal_data2$time) #
   n3 <- length(samp_data1$time)
@@ -452,7 +478,7 @@ plot_adaSel<-function (BNPR_out, traj = NULL, xlim = NULL, ylim = NULL, nbreaks 
 
 
 plot_BNPR_plus <-function (BNPR_out, traj = NULL, xlim = NULL, ylim = NULL, nbreaks = 40,
-                       lty = 1, lwd = 2, col = "black", main = "", log = "y", ylab = "Sampling Intensity",
+                       lty = 1, lwd = 2, col = "black", main = "", log = "y", ylab = "Effective pop size group 1",
                        xlab = "Time", xmarline = 3, axlabs = NULL, traj_lty = 2, parameter="eff1",
                        traj_lwd = 2, traj_col = col, newplot = TRUE, credible_region = TRUE,
                        heatmaps = TRUE, heatmap_labels = TRUE, heatmap_labels_side = "right",
@@ -463,27 +489,30 @@ plot_BNPR_plus <-function (BNPR_out, traj = NULL, xlim = NULL, ylim = NULL, nbre
   if (is.null(xlim)) {
     xlim = c(max(grid), min(grid))
   }
-  mask = BNPR_out$x >= min(xlim) & BNPR_out$x <= max(xlim)
-  t = BNPR_out$x[mask]
-  #t=decimal_date(max_samp)-t
+
   xlim_dec=xlim
-  #xlim=(c(decimal_date(max_samp)-xlim[1],decimal_date(max_samp)-xlim[2]))
   if (parameter=="eff1"){
+    mask = BNPR_out$summary$time >= min(xlim) & BNPR_out$summary$time <= max(xlim)
+    t = BNPR_out$summary$time[mask]
     y = BNPR_out$effpop[mask] * yscale
     yhi = BNPR_out$effpop975[mask] * yscale
     ylo = BNPR_out$effpop025[mask] * yscale
   } else if (parameter=="eff2"){
-    y = BNPR_out$effpop_2[mask] * yscale
-    yhi = BNPR_out$effpop975_2[mask] * yscale
-    ylo = BNPR_out$effpop025_2[mask] * yscale
+   stop("Not available yet in this version of the package! Just flip the order of the populations!")
   } else if (parameter=="sampInt"){
+    mask = BNPR_out$sampIntsummary$time >= min(xlim) & BNPR_out$sampIntsummary$time <= max(xlim)
+    t = BNPR_out$sampIntsummary$time[mask]
     y = BNPR_out$sampInt[mask] * yscale
     yhi = BNPR_out$sampInt975[mask] * yscale
     ylo = BNPR_out$sampInt025[mask] * yscale
+    ylab= "Sampling Intesity"
   } else if (parameter=="selInt"){
+    mask = BNPR_out$selIntsummary$time >= min(xlim) & BNPR_out$selIntsummary$time <= max(xlim)
+    t = BNPR_out$selIntsummary$time[mask]
     y = BNPR_out$selInt[mask] * yscale
     yhi = BNPR_out$selInt975[mask] * yscale
     ylo = BNPR_out$selInt025[mask] * yscale
+    ylab = "Selective intensity"
   }
   
   if (newplot) {
@@ -614,9 +643,10 @@ samp_stats_adasel <- function(grid, samp_times, n_sampled = NULL, trim_end = FAL
   count[utils::tail(grid,-1) <=  min(samp_times)] <- NA #Double Check
   result <- data.frame(time = field, count = count, E = E, E_log = log(E))
   
-  if (trim_end)
+  if (trim_end) #I am not sure what's this is supposed to do
     result <- result[stats::complete.cases(result),]
   
+
   return(result)
 }
 
