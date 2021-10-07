@@ -13,7 +13,8 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
 {
   
   if (min(samp_times1)>0){
-    warning("Warning: group 1 was not sampled at 0, model may not be identifiable",immediate. = T)
+    warning("Warning: group 1 was not sampled at 0, model may not be identifiable + 
+            the current implementation is suboptimal in that case",immediate. = T)
   }
   
   #If parSel is FALSE, I am using adaSel
@@ -31,8 +32,7 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                                       parSel, preferential,
                                       u.truncation,l.truncation,
                                       simplify,beta0_remove)
-  
-  
+
 
   
   #result$samp_times <- phy$samp_times
@@ -56,15 +56,16 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                            data.frame(time = ID, mean = exp(-mean), sd = sd * exp(-mean), 
                                       quant0.025 = exp(-`0.975quant`), quant0.5 = exp(-`0.5quant`), 
                                       quant0.975 = exp(-`0.025quant`)))
-    result$sampInt <- exp(result$result$summary.random$time3b$`0.5quant`)
-    result$sampIntmean <- exp(result$result$summary.random$time3b$mean)
-    result$sampInt975 <- exp(result$result$summary.random$time3b$`0.975quant`)
-    result$sampInt025 <- exp(result$result$summary.random$time3b$`0.025quant`)
+    result$sampInt <- exp(-result$result$summary.random$time3b$`0.5quant`)
+    result$sampIntmean <- exp(-result$result$summary.random$time3b$mean)
+    result$sampInt975 <- exp(-result$result$summary.random$time3b$`0.975quant`)
+    result$sampInt025 <- exp(-result$result$summary.random$time3b$`0.025quant`)
     result$sampIntsummary <- with(result$result$summary.random$time3b,
                                  data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
                                             quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
                                             quant0.975 = exp(`0.975quant`)))
     }
+  
     if (parSel){
       if (beta0_remove==FALSE){
         result$beta0 <- result$result$summary.fixed["beta0", "0.5quant"]
@@ -77,10 +78,10 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
       rownames(result$beta1summ) <- "Beta1"
       result$beta1post <- result$result$marginals.hyperpar$`Beta for time2`
     } else {
-      result$selInt <- exp(result$result$summary.random$time2b$`0.5quant`)
-      result$selIntmean <- exp(result$result$summary.random$time2b$mean)
-      result$selInt975 <- exp(result$result$summary.random$time2b$`0.975quant`)
-      result$selInt025 <- exp(result$result$summary.random$time2b$`0.025quant`)
+      result$selInt <- exp(-result$result$summary.random$time2b$`0.5quant`)
+      result$selIntmean <- exp(-result$result$summary.random$time2b$mean)
+      result$selInt975 <- exp(-result$result$summary.random$time2b$`0.975quant`)
+      result$selInt025 <- exp(-result$result$summary.random$time2b$`0.025quant`)
       result$selIntsummary <- with(result$result$summary.random$time2b,
                                    data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
                                               quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
@@ -163,10 +164,11 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
     data <- joint_coal_stats(coal_data1 = coal_data1, coal_data2 = coal_data2,
                              samp_times2=samp_times2,grid=grid)
   } else {
-    data <- joint_coal_stats_adasel(coal_data1 = coal_data1, coal_data2 = coal_data2, samp_data1 = samp_data1, samp_data2 = samp_data2)
+    data <- joint_coal_stats_adasel(coal_data1 = coal_data1, coal_data2 = coal_data2,
+                                    samp_data1 = samp_data1, samp_data2 = samp_data2,
+                                    grid=grid,samp_times2=samp_times2)
   
   }
-  
   if (parSel){
     if (!preferential){
         if (beta0_remove){
@@ -247,7 +249,7 @@ joint_coal_stats <- function(coal_data1, coal_data2,samp_times2,grid)
   ##Here, I ensure that the field on the second population starts from the minimum sampling points
   id.field <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
   coal_data2 <- coal_data2[(id.field+1):nrow(coal_data2),]
-  
+
   n1 <- length(coal_data1$time) #Here are the midpts 
   n2 <- length(coal_data2$time) #
   beta0 <- c(rep(0, n1), rep(1, n2))
@@ -267,12 +269,14 @@ joint_coal_stats <- function(coal_data1, coal_data2,samp_times2,grid)
 }
 
 
-joint_coal_stats_adasel <- function(coal_data1, coal_data2,samp_data1,samp_data2)
+joint_coal_stats_adasel <- function(coal_data1, coal_data2,samp_data1,samp_data2,grid,samp_times2)
 {
+
   id.field2 <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
   coal_data2 <- coal_data2[(id.field2+1):nrow(coal_data2),]
   samp_data2 <- samp_data2[(id.field2+1):nrow(samp_data2),]
   
+
   n1 <- length(coal_data1$time) #Here are the midpts 
   n2 <- length(coal_data2$time) #
   n3 <- length(samp_data1$time)
