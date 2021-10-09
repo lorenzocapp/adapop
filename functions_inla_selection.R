@@ -249,8 +249,8 @@ joint_coal_stats <- function(coal_data1, coal_data2,samp_times2,grid)
 {
   
   ##Here, I ensure that the field on the second population starts from the minimum sampling points
-  id.field <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
-  coal_data2 <- coal_data2[(id.field+1):nrow(coal_data2),]
+  id.field2 <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
+  coal_data2 <- coal_data2[id.field2:nrow(coal_data2),]
 
   n1 <- length(coal_data1$time) #Here are the midpts 
   n2 <- length(coal_data2$time) #
@@ -275,8 +275,8 @@ joint_coal_stats_adasel <- function(coal_data1, coal_data2,samp_data1,samp_data2
 {
 
   id.field2 <- max(which(utils::tail(grid,-1) <=  min(samp_times2)),0) + 1
-  coal_data2 <- coal_data2[(id.field2+1):nrow(coal_data2),]
-  samp_data2 <- samp_data2[(id.field2+1):nrow(samp_data2),]
+  coal_data2 <- coal_data2[id.field2:nrow(coal_data2),]
+  samp_data2 <- samp_data2[id.field2:nrow(samp_data2),]
   
 
   n1 <- length(coal_data1$time) #Here are the midpts 
