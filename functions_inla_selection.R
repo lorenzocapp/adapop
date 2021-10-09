@@ -221,8 +221,10 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
   lc_many <- NULL
   mod <- INLA::inla(formula, family = family, data = data,
                     lincomb = lc_many, offset = data$E_log,
-                    control.predictor = list(compute=TRUE),
+                    #control.predictor = list(compute=TRUE),
+                    control.compute = list(config=TRUE),
                     control.inla = list(lincomb.derived.only=FALSE))
+  #I am removing the control.predictor. Let's see if I need it. 
   
   return(list(result = mod, data = data, grid = grid, x = coal_data1$time))
 }
