@@ -88,7 +88,7 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                                               quant0.975 = exp(`0.975quant`)))
     }  
   
-  
+  result$preferential=preferential
   
   return(result)
 }
@@ -505,7 +505,14 @@ plot_BNPR_plus <-function (BNPR_out, traj = NULL, xlim = NULL, ylim = NULL, nbre
     yhi = BNPR_out$effpop975[mask] * yscale
     ylo = BNPR_out$effpop025[mask] * yscale
   } else if (parameter=="eff2"){
-   stop("Not available yet in this version of the package! Just flip the order of the populations!")
+    preferential = BNPR_out$preferential
+    result <- eff2_adasel(BNPR_out,preferential=preferential)
+    mask = result$effpop2summary$time >= min(xlim) & result$effpop2summary$time <= max(xlim)
+    t = result$effpop2summary$time[mask]
+    y = result$effpop2[mask] * yscale
+    yhi = result$effpop2_975[mask] * yscale
+    ylo = result$effpop2_025[mask] * yscale
+    ylab= "Effective pop size group 2"
   } else if (parameter=="sampInt"){
     mask = BNPR_out$sampIntsummary$time >= min(xlim) & BNPR_out$sampIntsummary$time <= max(xlim)
     t = BNPR_out$sampIntsummary$time[mask]
