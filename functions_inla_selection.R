@@ -56,10 +56,10 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
                            data.frame(time = ID, mean = exp(-mean), sd = sd * exp(-mean), 
                                       quant0.025 = exp(-`0.975quant`), quant0.5 = exp(-`0.5quant`), 
                                       quant0.975 = exp(-`0.025quant`)))
-    result$sampInt <- exp(-result$result$summary.random$time3b$`0.5quant`)
-    result$sampIntmean <- exp(-result$result$summary.random$time3b$mean)
-    result$sampInt975 <- exp(-result$result$summary.random$time3b$`0.975quant`)
-    result$sampInt025 <- exp(-result$result$summary.random$time3b$`0.025quant`)
+    result$sampInt <- exp(result$result$summary.random$time3b$`0.5quant`)
+    result$sampIntmean <- exp(result$result$summary.random$time3b$mean)
+    result$sampInt975 <- exp(result$result$summary.random$time3b$`0.975quant`)
+    result$sampInt025 <- exp(result$result$summary.random$time3b$`0.025quant`)
     result$sampIntsummary <- with(result$result$summary.random$time3b,
                                  data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
                                             quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
@@ -80,8 +80,8 @@ BNPR_sel <- function (tree1,tree2, samp_times1,samp_times2, lengthout = 100,
     } else {
       result$selInt <- exp(-result$result$summary.random$time2b$`0.5quant`)
       result$selIntmean <- exp(-result$result$summary.random$time2b$mean)
-      result$selInt975 <- exp(-result$result$summary.random$time2b$`0.975quant`)
-      result$selInt025 <- exp(-result$result$summary.random$time2b$`0.025quant`)
+      result$selInt975 <- exp(-result$result$summary.random$time2b$`0.025quant`)
+      result$selInt025 <- exp(-result$result$summary.random$time2b$`0.975quant`)
       result$selIntsummary <- with(result$result$summary.random$time2b,
                                    data.frame(time = ID, mean = exp(mean), sd = sd * exp(mean),
                                               quant0.025 = exp(`0.025quant`), quant0.5 = exp(`0.5quant`),
@@ -187,7 +187,8 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
         f(time1, model="rw1", hyper = hyper, constr = FALSE) +
         f(time2,copy="time1", fixed=FALSE, param=c(0, beta1_prec)) +
         f(time3,w,copy="time1") + f(time3b, model="rw1", hyper = hyper, constr=FALSE) +
-        f(time4,w,copy="time2") + f(time4b, w, copy="time3b")
+        #f(time4,w,copy="time2") + f(time4b, copy="time3b")
+        f(time4,w,copy="time2") + f(time4b, model="rw1", hyper = hyper, constr=FALSE)
     }
   } else {
     if (!preferential){
@@ -204,10 +205,10 @@ infer_coal_samp_selection <- function(phy1,phy2, lengthout=100, prec_alpha=0.01,
       data$time4c=data$time4
       formula <- Y ~ -1 +
         f(time1, model="rw1", hyper = hyper, constr = FALSE) +
-        f(time2, w, copy="time1") + f(time2b, model="rw1", hyper = hyper, constr=FALSE) +
+        f(time2, copy="time1") + f(time2b, model="rw1", hyper = hyper, constr=FALSE) +
         f(time3, w, copy="time1") + f(time3b, model="rw1", hyper = hyper, constr=FALSE) +
-        f(time4, w, copy="time1") + f(time4b, w, copy="time2b") + f(time4c,copy="time3b")
-      
+        #f(time4, w, copy="time1") + f(time4b, w, copy="time2b") + f(time4c,copy="time3b")
+        f(time4, w, copy="time1") + f(time4b, w, copy="time2b") +f(time4c, model="rw1", hyper = hyper, constr=FALSE)
     }
  
   }
@@ -656,3 +657,170 @@ samp_stats_adasel <- function(grid, samp_times, n_sampled = NULL, trim_end = FAL
   return(result)
 }
 
+###### Extra sampling and sampling 
+
+
+
+
+envelope<-function(INLA_out, traj, hilim=0.07, lolim=0, yhilim=Inf, ylolim=0)
+{
+  #mod = INLA_out$result$summary.random$time
+  Infun<-stepfun(INLA_out[,1],c(INLA_out[1,2],INLA_out[,2]))
+  InfunLo<-stepfun(INLA_out[,1],c(INLA_out[1,4],INLA_out[,4]))
+  InfunHi<-stepfun(INLA_out[,1],c(INLA_out[1,3],INLA_out[,3]))
+  grid_pts = seq(0,hilim,length.out = 100)
+  n = length(grid_pts)
+  lo = InfunLo(grid_pts)
+  hi = InfunHi(grid_pts)
+  truth = traj(grid_pts)
+  result = sum(truth < hi & truth > lo)
+  return(list(tot = result, avg = result / n))
+}
+
+dev = function(INLA_out, traj, hilim=Inf, lolim=0, yhilim=Inf, ylolim=0)
+{
+  Infun<-stepfun(INLA_out[,1],c(INLA_out[1,2],INLA_out[,2]))
+  InfunLo<-stepfun(INLA_out[,1],c(INLA_out[1,4],INLA_out[,4]))
+  InfunHi<-stepfun(INLA_out[,1],c(INLA_out[1,3],INLA_out[,3]))
+  grid_pts = seq(0,hilim,length.out = 100)
+  n = length(grid_pts)
+  lo = InfunLo(grid_pts)
+  hi = InfunHi(grid_pts)
+  truth = traj(grid_pts)
+  med = Infun(grid_pts)
+  result = sum( abs(med - truth)/truth )
+  return(list(tot = result, avg = result / n ))
+}
+
+relwid = function(INLA_out, traj, hilim=Inf, lolim=0, yhilim=Inf, ylolim=0)
+{
+  Infun<-stepfun(INLA_out[,1],c(INLA_out[1,2],INLA_out[,2]))
+  InfunLo<-stepfun(INLA_out[,1],c(INLA_out[1,4],INLA_out[,4]))
+  InfunHi<-stepfun(INLA_out[,1],c(INLA_out[1,3],INLA_out[,3]))
+  grid_pts = seq(0,hilim,length.out = 100)
+  n = length(grid_pts)
+  lo = InfunLo(grid_pts)
+  hi = InfunHi(grid_pts)
+  truth = traj(grid_pts)
+  result = sum( (hi - lo)/truth )
+  return(list(tot = result, avg = result / n ))
+}
+
+
+
+
+
+
+
+eff2_adasel <- function(res,preferential=F){
+  
+  #Sample population size of the second group from the joint inference 
+  result <- res$result
+  l_time1 <- nrow(res$summary)
+  l_time2 <- nrow(res$selIntsummary)
+  if (!preferential){
+    samp <- INLA::inla.posterior.sample(500, res$result,
+                                        selection = list(time=seq((l_time1-l_time2)+1,l_time1),
+                                                         time2b=seq(1,l_time2)))
+    posterior <- sapply(samp,function(x) apply(exp(matrix(c(x$latent),ncol=2,byrow=F))^(-1),1,prod))
+  } else {
+    samp <- INLA::inla.posterior.sample(500, res$result,
+                                        selection = list(time1=seq((l_time1-l_time2)+1,l_time1),
+                                                         time2b=seq(1,l_time2)))
+    posterior <- sapply(samp,function(x) apply(exp(matrix(c(x$latent),ncol=2,byrow=F))^(-1),1,prod))
+    
+  }
+  median <- apply(posterior,1,quantile, probs=0.5)
+  quant0.025 <- apply(posterior,1,quantile, probs=0.025)
+  quant0.975 <- apply(posterior,1,quantile, probs=0.975)
+  mean <- apply(posterior,1,mean)
+  result$effpop2 <- median
+  result$effpop2mean <- mean
+  result$effpop2_975 <- quant0.975
+  result$effpop2_025 <- quant0.025
+  result$effpop2summary <- data.frame(time = res$selIntsummary$time, mean = mean,  
+                                      quant0.025 = quant0.025, quant0.5 = median, 
+                                      quant0.975 = quant0.975)
+  
+  return(result)
+}
+
+selInt_independent <- function(res1,res2){
+  
+  #Compute a ratio of two independent BNPR runs
+  l_time1 <- nrow(res1$summary)
+  l_time2 <- nrow(res2$summary)
+  samp1 <- INLA::inla.posterior.sample(500, res1$result,selection = list(time=seq(1,l_time1)))
+  posterior1 <- sapply(samp1,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  samp2 <- INLA::inla.posterior.sample(500, res2$result,selection = list(time=seq(1,l_time2)))
+  posterior2 <- sapply(samp2,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  posterior <- posterior2/posterior1
+  median <- apply(posterior,1,quantile, probs=0.5)
+  quant0.025 <- apply(posterior,1,quantile, probs=0.025)
+  quant0.975 <- apply(posterior,1,quantile, probs=0.975)
+  mean <- apply(posterior,1,mean)
+  result <- list()
+  result$selInt_ind <- median
+  result$selInt_indmean <- mean
+  result$selInt_ind_975 <- quant0.975
+  result$selInt_ind_025 <- quant0.025
+  result$selInt_indsummary <- data.frame(time = res1$summary$time, mean = mean,  
+                                         quant0.025 = quant0.025, quant0.5 = median, 
+                                         quant0.975 = quant0.975)
+  return(result)
+}
+
+
+selInt_parametric <- function(res){
+  
+  #compute the ratio of the parameteric model
+  
+  l_time <- nrow(res$summary)
+  samp1 <- INLA::inla.posterior.sample(500, res$result,selection = list(time=seq(1,l_time)))
+  posterior1 <- sapply(samp1,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  samp2 <- INLA::inla.posterior.sample(500, res$result,selection = list(time2=seq(1,l_time),beta0=1))
+  posterior2 <- sapply(samp2,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  posterior2 <- posterior2[1:l_time,]%*%diag(posterior2[l_time+1,])
+  posterior <- posterior2/posterior1
+  median <- apply(posterior,1,quantile, probs=0.5)
+  quant0.025 <- apply(posterior,1,quantile, probs=0.025)
+  quant0.975 <- apply(posterior,1,quantile, probs=0.975)
+  mean <- apply(posterior,1,mean)
+  result <- list()
+  result$selInt_par <- median
+  result$selInt_parmean <- mean
+  result$selInt_par_975 <- quant0.975
+  result$selInt_par_025 <- quant0.025
+  result$selInt_parsummary <- data.frame(time = res$summary$time, mean = mean,  
+                                         quant0.025 = quant0.025, quant0.5 = median, 
+                                         quant0.975 = quant0.975)
+  return(result)
+}
+
+
+eff2_parametric <- function(res){
+  
+  #compute the ratio of the parameteric model
+  
+  l_time <- nrow(res$summary)
+  samp1 <- INLA::inla.posterior.sample(500, res$result,selection = list(time=seq(1,l_time)))
+  posterior1 <- sapply(samp1,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  samp2 <- INLA::inla.posterior.sample(500, res$result,selection = list(time2=seq(1,l_time),beta0=1))
+  posterior2 <- sapply(samp2,function(x) exp(matrix(c(x$latent),ncol=1,byrow=F))^(-1))
+  posterior2 <- posterior2[1:l_time,]%*%diag(posterior2[l_time+1,])
+  posterior <- posterior2
+  median <- apply(posterior,1,quantile, probs=0.5)
+  quant0.025 <- apply(posterior,1,quantile, probs=0.025)
+  quant0.975 <- apply(posterior,1,quantile, probs=0.975)
+  mean <- apply(posterior,1,mean)
+  result <- list()
+  result$effpop2 <- median
+  result$effpop2mean <- mean
+  result$effpop2_975 <- quant0.975
+  result$effpop2_025 <- quant0.025
+  result$effpop2summary <- data.frame(time = res$summary$time, mean = mean,  
+                                      quant0.025 = quant0.025, quant0.5 = median, 
+                                      quant0.975 = quant0.975)
+  
+  return(result)
+}
