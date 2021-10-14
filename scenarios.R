@@ -99,4 +99,22 @@ covid_exp2<-function(t){
   return(result)
 }
 
+} else if (scenario==6){
+  
+  covid_exp1<-function(t){
+    result=rep(0,length(t))
+    result[t<=0.35]<-10
+    result[t>0.35 & t<0.4]<-9.999987e+14*exp(-92.1034*t[t>0.35 & t<0.4]) #50 times smaller
+    result[t>=0.4]<-0.1
+    return(result)
+  }
+  
+  covid_exp2<-function(t){
+    result=rep(0,length(t))
+    result[t<=0.35]<-10
+    result[t>0.35 & t<0.4]<-9.999987e+14*exp(-92.1034*t[t>0.35 & t<0.4]) #50 times smaller
+    result[t>=0.4]<-0.1
+    return(result)
+  }
+  
 }
