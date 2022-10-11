@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data
+id="SouthKorea_delta"
+spec="Alignment"
+name="alignment">
+    
+
+
+    
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+
+<run id="mcmc" spec="MCMC" chainLength="20000000">
+    <state id="state" spec="State" storeEvery="5000">
+        <tree id="Tree.t:SouthKorea_delta" spec="beast.evolution.tree.Tree" name="stateNode">
+            <trait id="dateTrait.t:SouthKorea_delta" spec="beast.evolution.tree.TraitSet" dateFormat="yyyy-M-dd" traitname="date" value="hCoV-19/SouthKorea/KDCA6769/2021|EPI_ISL_3026759|2021-07-09=2021-07-09,hCoV-19/SouthKorea/KDCA9217/2021|EPI_ISL_3674401|2021-07-22=2021-07-22,hCoV-19/SouthKorea/KDCA8456/2021|EPI_ISL_3544841|2021-08-04=2021-08-04,hCoV-19/SouthKorea/KDCA11046/2021|EPI_ISL_4204270|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA6346/2021|EPI_ISL_3026421|2021-06-29=2021-06-29,hCoV-19/SouthKorea/KDCA7879/2021|EPI_ISL_3452265|2021-07-24=2021-07-24,hCoV-19/SouthKorea/KDCA9319/2021|EPI_ISL_3674655|2021-07-26=2021-07-26,hCoV-19/SouthKorea/KDCA7314/2021|EPI_ISL_3369151|2021-07-18=2021-07-18,hCoV-19/SouthKorea/YS117/2021|EPI_ISL_3411836|2021-06-17=2021-06-17,hCoV-19/SouthKorea/KDCA8804/2021|EPI_ISL_3545082|2021-07-26=2021-07-26,hCoV-19/SouthKorea/KDCA10836/2021|EPI_ISL_4204107|2021-08-24=2021-08-24,hCoV-19/SouthKorea/KDCA10622/2021|EPI_ISL_4203866|2021-08-24=2021-08-24,hCoV-19/SouthKorea/KDCA6510/2021|EPI_ISL_3026530|2021-07-02=2021-07-02,hCoV-19/SouthKorea/KDCA10512/2021|EPI_ISL_3870069|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA8285/2021|EPI_ISL_3544738|2021-07-31=2021-07-31,hCoV-19/SouthKorea/KDCA6224/2021|EPI_ISL_3026328|2021-06-26=2021-06-26,hCoV-19/SouthKorea/KDCA9305/2021|EPI_ISL_3674622|2021-07-28=2021-07-28,hCoV-19/SouthKorea/KDCA7847/2021|EPI_ISL_3452230|2021-07-25=2021-07-25,hCoV-19/SouthKorea/KDCA9842/2021|EPI_ISL_3869611|2021-08-11=2021-08-11,hCoV-19/SouthKorea/KDCA9376/2021|EPI_ISL_3772782|2021-08-05=2021-08-05,hCoV-19/SouthKorea/KDCA6330/2021|EPI_ISL_3026411|2021-06-28=2021-06-28,hCoV-19/SouthKorea/KDCA9113/2021|EPI_ISL_3674119|2021-07-13=2021-07-13,hCoV-19/SouthKorea/KDCA10220/2021|EPI_ISL_3869877|2021-08-17=2021-08-17,hCoV-19/SouthKorea/KDCA11073/2021|EPI_ISL_4204288|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA6767/2021|EPI_ISL_3026757|2021-07-09=2021-07-09,hCoV-19/SouthKorea/KDCA6831/2021|EPI_ISL_3026810|2021-07-08=2021-07-08,hCoV-19/SouthKorea/KDCA9661/2021|EPI_ISL_3772911|2021-07-29=2021-07-29,hCoV-19/SouthKorea/KDCA10024/2021|EPI_ISL_3869730|2021-08-15=2021-08-15,hCoV-19/SouthKorea/KDCA10403/2021|EPI_ISL_3869978|2021-08-21=2021-08-21,hCoV-19/SouthKorea/KDCA10217/2021|EPI_ISL_3869874|2021-08-17=2021-08-17,hCoV-19/SouthKorea/KDCA10925/2021|EPI_ISL_4204177|2021-08-26=2021-08-26,hCoV-19/SouthKorea/KDCA9558/2021|EPI_ISL_3772641|2021-07-26=2021-07-26,hCoV-19/SouthKorea/KDCA10519/2021|EPI_ISL_3933499|2021-06-13=2021-06-13,hCoV-19/SouthKorea/KDCA10929/2021|EPI_ISL_4204181|2021-08-26=2021-08-26,hCoV-19/SouthKorea/KDCA8221/2021|EPI_ISL_3544695|2021-07-31=2021-07-31,hCoV-19/SouthKorea/KDCA10634/2021|EPI_ISL_4203882|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA9514/2021|EPI_ISL_3772899|2021-08-08=2021-08-08,hCoV-19/SouthKorea/KDCA6298/2021|EPI_ISL_3026386|2021-06-30=2021-06-30,hCoV-19/SouthKorea/KDCA10466/2021|EPI_ISL_3870025|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA9663/2021|EPI_ISL_3772909|2021-07-28=2021-07-28,hCoV-19/SouthKorea/KDCA9339/2021|EPI_ISL_3674709|2021-07-27=2021-07-27,hCoV-19/SouthKorea/KDCA7784/2021|EPI_ISL_3452146|2021-07-25=2021-07-25,hCoV-19/SouthKorea/KDCA5620/2021|EPI_ISL_2967338|2021-06-18=2021-06-18,hCoV-19/SouthKorea/KDCA7288/2021|EPI_ISL_3369082|2021-07-18=2021-07-18,hCoV-19/SouthKorea/KDCA6716/2021|EPI_ISL_3026712|2021-07-06=2021-07-06,hCoV-19/SouthKorea/KDCA6107/2021|EPI_ISL_3026241|2021-06-24=2021-06-24,hCoV-19/SouthKorea/KDCA8271/2021|EPI_ISL_3544727|2021-08-01=2021-08-01,hCoV-19/SouthKorea/KDCA9783/2021|EPI_ISL_3869595|2021-07-22=2021-07-22,hCoV-19/SouthKorea/KDCA-7398/2021|EPI_ISL_3448953|2021-06-23=2021-06-23,hCoV-19/SouthKorea/KDCA9549/2021|EPI_ISL_3772629|2021-07-23=2021-07-23,hCoV-19/SouthKorea/KDCA8879/2021|EPI_ISL_3545133|2021-07-26=2021-07-26,hCoV-19/SouthKorea/KDCA10503/2021|EPI_ISL_3870060|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA8473/2021|EPI_ISL_3544853|2021-08-04=2021-08-04,hCoV-19/SouthKorea/KDCA6930/2021|EPI_ISL_3368916|2021-07-10=2021-07-10,hCoV-19/SouthKorea/KDCA9208/2021|EPI_ISL_3674387|2021-07-22=2021-07-22,hCoV-19/SouthKorea/KDCA10731/2021|EPI_ISL_4203989|2021-08-17=2021-08-17,hCoV-19/SouthKorea/KDCA11126/2021|EPI_ISL_4204314|2021-08-31=2021-08-31,hCoV-19/SouthKorea/KDCA8313/2021|EPI_ISL_3544760|2021-07-28=2021-07-28,hCoV-19/SouthKorea/KDCA10833/2021|EPI_ISL_4204104|2021-08-27=2021-08-27,hCoV-19/SouthKorea/KDCA10007/2021|EPI_ISL_3869716|2021-08-15=2021-08-15,hCoV-19/SouthKorea/KDCA10104/2021|EPI_ISL_3869785|2021-08-15=2021-08-15,hCoV-19/SouthKorea/KDCA9045/2021|EPI_ISL_3545213|2021-08-02=2021-08-02,hCoV-19/SouthKorea/KDCA8694/2021|EPI_ISL_3545004|2021-07-15=2021-07-15,hCoV-19/SouthKorea/KDCA10012/2021|EPI_ISL_3869720|2021-08-15=2021-08-15,hCoV-19/SouthKorea/KDCA10433/2021|EPI_ISL_3870000|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA11082/2021|EPI_ISL_4204291|2021-08-31=2021-08-31,hCoV-19/SouthKorea/KDCA9483/2021|EPI_ISL_3772849|2021-08-07=2021-08-07,hCoV-19/SouthKorea/KDCA9888/2021|EPI_ISL_3869647|2021-08-11=2021-08-11,hCoV-19/SouthKorea/KDCA11141/2021|EPI_ISL_4204322|2021-08-31=2021-08-31,hCoV-19/SouthKorea/KDCA7853/2021|EPI_ISL_3452239|2021-07-24=2021-07-24,hCoV-19/SouthKorea/KDCA10471/2021|EPI_ISL_3870030|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA10518/2021|EPI_ISL_3933502|2021-06-12=2021-06-12,hCoV-19/SouthKorea/KDCA8704/2021|EPI_ISL_3545010|2021-07-23=2021-07-23,hCoV-19/SouthKorea/KDCA6583/2021|EPI_ISL_3026594|2021-07-04=2021-07-04,hCoV-19/SouthKorea/KDCA7196/2021|EPI_ISL_3369007|2021-07-16=2021-07-16,hCoV-19/SouthKorea/KDCA10991/2021|EPI_ISL_4204228|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA5997/2021|EPI_ISL_3026149|2021-06-22=2021-06-22,hCoV-19/SouthKorea/KDCA10281/2021|EPI_ISL_3869911|2021-08-19=2021-08-19,hCoV-19/SouthKorea/KDCA10259/2021|EPI_ISL_3869897|2021-08-19=2021-08-19,hCoV-19/SouthKorea/KDCA9314/2021|EPI_ISL_3674643|2021-07-28=2021-07-28,hCoV-19/SouthKorea/KDCA9280/2021|EPI_ISL_3674563|2021-07-29=2021-07-29,hCoV-19/SouthKorea/KDCA10543/2021|EPI_ISL_3933522|2021-06-05=2021-06-05,hCoV-19/SouthKorea/KDCA7834/2021|EPI_ISL_3452211|2021-07-14=2021-07-14,hCoV-19/SouthKorea/KDCA9134/2021|EPI_ISL_3674180|2021-07-16=2021-07-16,hCoV-19/SouthKorea/KDCA10457/2021|EPI_ISL_3870018|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA10472/2021|EPI_ISL_3870031|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA7643/2021|EPI_ISL_3452022|2021-07-14=2021-07-14,hCoV-19/SouthKorea/KDCA10820/2021|EPI_ISL_4204097|2021-08-21=2021-08-21,hCoV-19/SouthKorea/KDCA9791/2021|EPI_ISL_3869603|2021-07-22=2021-07-22,hCoV-19/SouthKorea/KDCA6603/2021|EPI_ISL_3026612|2021-07-04=2021-07-04,hCoV-19/SouthKorea/KDCA6490/2021|EPI_ISL_3026514|2021-06-23=2021-06-23,hCoV-19/SouthKorea/KDCA6327/2021|EPI_ISL_3026408|2021-06-28=2021-06-28,hCoV-19/SouthKorea/KDCA6964/2021|EPI_ISL_3369134|2021-07-12=2021-07-12,hCoV-19/SouthKorea/KDCA4614/2021|EPI_ISL_2464363|2021-05-08=2021-05-08,hCoV-19/SouthKorea/KDCA10479/2021|EPI_ISL_3870037|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA10751/2021|EPI_ISL_4204009|2021-08-25=2021-08-25,hCoV-19/SouthKorea/KDCA10213/2021|EPI_ISL_3869870|2021-08-17=2021-08-17,hCoV-19/SouthKorea/KDCA7747/2021|EPI_ISL_3452095|2021-07-24=2021-07-24,hCoV-19/SouthKorea/KDCA6249/2021|EPI_ISL_3026347|2021-06-26=2021-06-26,hCoV-19/SouthKorea/KDCA9641/2021|EPI_ISL_3772842|2021-08-06=2021-08-06,hCoV-19/SouthKorea/KDCA10728/2021|EPI_ISL_4203985|2021-08-19=2021-08-19,hCoV-19/SouthKorea/KDCA9970/2021|EPI_ISL_3869700|2021-08-12=2021-08-12,hCoV-19/SouthKorea/KDCA10073/2021|EPI_ISL_3869762|2021-08-16=2021-08-16,hCoV-19/SouthKorea/KDCA7837/2021|EPI_ISL_3452216|2021-07-24=2021-07-24,hCoV-19/SouthKorea/KDCA7812/2021|EPI_ISL_3452187|2021-07-24=2021-07-24,hCoV-19/SouthKorea/KDCA7634/2021|EPI_ISL_3452015|2021-07-17=2021-07-17,hCoV-19/SouthKorea/KDCA5632/2021|EPI_ISL_2967350|2021-06-19=2021-06-19,hCoV-19/SouthKorea/KDCA11005/2021|EPI_ISL_4204238|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA6668/2021|EPI_ISL_3026671|2021-07-06=2021-07-06,hCoV-19/SouthKorea/KDCA6360/2021|EPI_ISL_3026433|2021-06-29=2021-06-29,hCoV-19/SouthKorea/KDCA7350/2021|EPI_ISL_3369119|2021-07-18=2021-07-18,hCoV-19/SouthKorea/KDCA5605/2021|EPI_ISL_2967327|2021-06-15=2021-06-15,hCoV-19/SouthKorea/KDCA7676/2021|EPI_ISL_3452048|2021-07-22=2021-07-22,hCoV-19/SouthKorea/KDCA7921/2021|EPI_ISL_3452307|2021-07-27=2021-07-27,hCoV-19/SouthKorea/KDCA11114/2021|EPI_ISL_4204306|2021-08-31=2021-08-31,hCoV-19/SouthKorea/KDCA10458/2021|EPI_ISL_3870019|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA10158/2021|EPI_ISL_3869826|2021-08-17=2021-08-17,hCoV-19/SouthKorea/KDCA10355/2021|EPI_ISL_3869945|2021-08-22=2021-08-22,hCoV-19/SouthKorea/KDCA6162/2021|EPI_ISL_3026279|2021-06-24=2021-06-24,hCoV-19/SouthKorea/KDCA6938/2021|EPI_ISL_3369098|2021-07-10=2021-07-10,hCoV-19/SouthKorea/KDCA9942/2021|EPI_ISL_3869688|2021-08-13=2021-08-13,hCoV-19/SouthKorea/KDCA10353/2021|EPI_ISL_3869944|2021-08-21=2021-08-21,hCoV-19/SouthKorea/KDCA10938/2021|EPI_ISL_4204188|2021-08-27=2021-08-27,hCoV-19/SouthKorea/KDCA8748/2021|EPI_ISL_3545037|2021-07-23=2021-07-23,hCoV-19/SouthKorea/KDCA10986/2021|EPI_ISL_4204223|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA8307/2021|EPI_ISL_3544755|2021-07-30=2021-07-30,hCoV-19/SouthKorea/KDCA8936/2021|EPI_ISL_3545164|2021-07-30=2021-07-30,hCoV-19/SouthKorea/KDCA10426/2021|EPI_ISL_3869995|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA6506/2021|EPI_ISL_3026526|2021-07-02=2021-07-02,hCoV-19/SouthKorea/KDCA9349/2021|EPI_ISL_3674732|2021-07-23=2021-07-23,hCoV-19/SouthKorea/KDCA10684/2021|EPI_ISL_4203932|2021-08-25=2021-08-25,hCoV-19/SouthKorea/KDCA10846/2021|EPI_ISL_4204113|2021-08-26=2021-08-26,hCoV-19/SouthKorea/KDCA7588/2021|EPI_ISL_3451981|2021-07-21=2021-07-21,hCoV-19/SouthKorea/KDCA6560/2021|EPI_ISL_3026573|2021-07-06=2021-07-06,hCoV-19/SouthKorea/KDCA6518/2021|EPI_ISL_3026537|2021-07-03=2021-07-03,hCoV-19/SouthKorea/KDCA8973/2021|EPI_ISL_3545188|2021-07-30=2021-07-30,hCoV-19/SouthKorea/KDCA8462/2021|EPI_ISL_3544846|2021-08-04=2021-08-04,hCoV-19/SouthKorea/KDCA7056/2021|EPI_ISL_3369116|2021-07-15=2021-07-15,hCoV-19/SouthKorea/KDCA8403/2021|EPI_ISL_3544809|2021-08-03=2021-08-03,hCoV-19/SouthKorea/KDCA7765/2021|EPI_ISL_3452122|2021-07-17=2021-07-17,hCoV-19/SouthKorea/KDCA11001/2021|EPI_ISL_4204236|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA7213/2021|EPI_ISL_3369173|2021-07-17=2021-07-17,hCoV-19/SouthKorea/KDCA6429/2021|EPI_ISL_3026474|2021-07-01=2021-07-01,hCoV-19/SouthKorea/KDCA11045/2021|EPI_ISL_4204269|2021-08-30=2021-08-30,hCoV-19/SouthKorea/KDCA10469/2021|EPI_ISL_3870028|2021-08-23=2021-08-23,hCoV-19/SouthKorea/KDCA7586/2021|EPI_ISL_3451980|2021-07-21=2021-07-21,hCoV-19/SouthKorea/KDCA4593/2021|EPI_ISL_2464343|2021-04-25=2021-04-25,hCoV-19/SouthKorea/KDCA5981/2021|EPI_ISL_3026133|2021-06-21=2021-06-21,hCoV-19/SouthKorea/KDCA6586/2021|EPI_ISL_3026597|2021-07-04=2021-07-04,hCoV-19/SouthKorea/KDCA9374/2021|EPI_ISL_3772778|2021-08-05=2021-08-05">
+                <taxa id="TaxonSet.SouthKorea_delta" spec="TaxonSet">
+                    <alignment idref="SouthKorea_delta"/>
+                </taxa>
+            </trait>
+            <taxonset idref="TaxonSet.SouthKorea_delta"/>
+        </tree>
+        <parameter id="clockRate.c:SouthKorea_delta" spec="parameter.RealParameter" lower="8.0E-4" name="stateNode" upper="0.001">9.0E-4</parameter>
+        <parameter id="kappa.s:SouthKorea_delta" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+        <stateNode id="indicators.alltrees" spec="parameter.BooleanParameter">false</stateNode>
+        <parameter id="populationMean.alltrees" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+        <parameter id="popSizes.alltrees" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+    </state>
+
+    <init id="RandomTree.t:SouthKorea_delta" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:SouthKorea_delta" taxa="@SouthKorea_delta">
+        <populationModel id="ConstantPopulation0.t:SouthKorea_delta" spec="ConstantPopulation">
+            <parameter id="randomPopSize.t:SouthKorea_delta" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+        </populationModel>
+    </init>
+
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="ExtendedBayesianSkyline.t:SouthKorea_delta" spec="Coalescent">
+                <populationModel id="scaledDemo.t:SouthKorea_delta" spec="ScaledPopulationFunction">
+                    <population id="demographic.alltrees" spec="CompoundPopulationFunction" populationIndicators="@indicators.alltrees" populationSizes="@popSizes.alltrees">
+                        <itree id="treeIntervals.t:SouthKorea_delta" spec="TreeIntervals" tree="@Tree.t:SouthKorea_delta"/>
+                    </population>
+                    <parameter id="RealParameter.3" spec="parameter.RealParameter" lower="0.0" name="factor" upper="0.0">1.0</parameter>
+                </populationModel>
+                <treeIntervals idref="treeIntervals.t:SouthKorea_delta"/>
+            </distribution>
+            <prior id="ClockPrior.c:SouthKorea_delta" name="distribution" x="@clockRate.c:SouthKorea_delta">
+                <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+            </prior>
+            <prior id="indicatorsPrior.alltrees" name="distribution">
+                <x id="indsSun.alltrees" spec="util.Sum">
+                    <arg idref="indicators.alltrees"/>
+                </x>
+                <distr id="Poisson.EBSP" spec="beast.math.distributions.Poisson">
+                    <parameter id="RealParameter.4" spec="parameter.RealParameter" estimate="false" name="lambda" upper="0.0">0.69314718056</parameter>
+                </distr>
+            </prior>
+            <prior id="KappaPrior.s:SouthKorea_delta" name="distribution" x="@kappa.s:SouthKorea_delta">
+                <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                    <parameter id="RealParameter.1" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                    <parameter id="RealParameter.2" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                </LogNormal>
+            </prior>
+            <prior id="popSizePrior.alltrees" name="distribution" x="@popSizes.alltrees">
+                <Exponential id="popPriorDist.EBSP" mean="@populationMean.alltrees" name="distr"/>
+            </prior>
+            <prior id="populationMeanPrior.alltrees" name="distribution" x="@populationMean.alltrees">
+                <OneOnX id="OneOnX.EBSP" name="distr"/>
+            </prior>
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+            <distribution id="treeLikelihood.SouthKorea_delta" spec="ThreadedTreeLikelihood" data="@SouthKorea_delta" tree="@Tree.t:SouthKorea_delta">
+                <siteModel id="SiteModel.s:SouthKorea_delta" spec="SiteModel">
+                    <parameter id="mutationRate.s:SouthKorea_delta" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="gammaShape.s:SouthKorea_delta" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                    <parameter id="proportionInvariant.s:SouthKorea_delta" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel id="hky.s:SouthKorea_delta" spec="HKY" kappa="@kappa.s:SouthKorea_delta">
+                        <frequencies id="empiricalFreqs.s:SouthKorea_delta" spec="Frequencies" data="@SouthKorea_delta"/>
+                    </substModel>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:SouthKorea_delta" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:SouthKorea_delta"/>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <operator id="StrictClockRateScaler.c:SouthKorea_delta" spec="ScaleOperator" parameter="@clockRate.c:SouthKorea_delta" scaleFactor="0.749" weight="3.0"/>
+
+    <operator id="strictClockUpDownOperator.c:SouthKorea_delta" spec="UpDownOperator" scaleFactor="0.765" weight="3.0">
+        <up idref="clockRate.c:SouthKorea_delta"/>
+        <down idref="Tree.t:SouthKorea_delta"/>
+    </operator>
+
+    <operator id="KappaScaler.s:SouthKorea_delta" spec="ScaleOperator" parameter="@kappa.s:SouthKorea_delta" scaleFactor="0.5" weight="0.1"/>
+
+    <operator id="ExtendedBayesianSkylineTreeScaler.t:SouthKorea_delta" spec="ScaleOperator" tree="@Tree.t:SouthKorea_delta" scaleFactor="0.949" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineTreeRootScaler.t:SouthKorea_delta" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:SouthKorea_delta" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineUniformOperator.t:SouthKorea_delta" spec="Uniform" tree="@Tree.t:SouthKorea_delta" weight="30.0"/>
+
+    <operator id="ExtendedBayesianSkylineSubtreeSlide.t:SouthKorea_delta" spec="SubtreeSlide" tree="@Tree.t:SouthKorea_delta" size="0.227" weight="15.0"/>
+
+    <operator id="ExtendedBayesianSkylineNarrow.t:SouthKorea_delta" spec="Exchange" tree="@Tree.t:SouthKorea_delta" weight="15.0"/>
+
+    <operator id="ExtendedBayesianSkylineWide.t:SouthKorea_delta" spec="Exchange" isNarrow="false" tree="@Tree.t:SouthKorea_delta" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineWilsonBalding.t:SouthKorea_delta" spec="WilsonBalding" tree="@Tree.t:SouthKorea_delta" weight="3.0"/>
+
+    <operator id="bitflip.alltrees" spec="BitFlipOperator" parameter="@indicators.alltrees" weight="30.0"/>
+
+    <operator id="indicatorSampler.alltrees" spec="SampleOffValues" dist="@popPriorDist.EBSP" indicators="@indicators.alltrees" values="@popSizes.alltrees" weight="15.0"/>
+
+    <operator id="indicatorScaler.alltrees" spec="ScaleOperator" degreesOfFreedom="1" indicator="@indicators.alltrees" parameter="@popSizes.alltrees" scaleFactor="0.5" weight="15.0"/>
+
+    <operator id="EBSPupDownOperator.alltrees" spec="UpDownOperator" scaleFactor="0.7" weight="5.0">
+        <up idref="popSizes.alltrees"/>
+        <up idref="populationMean.alltrees"/>
+    </operator>
+
+    <logger id="tracelog" spec="Logger" fileName="SouthKorea_delta.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.SouthKorea_delta"/>
+        <log id="TreeHeight.t:SouthKorea_delta" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:SouthKorea_delta"/>
+        <log idref="clockRate.c:SouthKorea_delta"/>
+        <log idref="kappa.s:SouthKorea_delta"/>
+        <log idref="ExtendedBayesianSkyline.t:SouthKorea_delta"/>
+        <log idref="indicators.alltrees"/>
+        <log idref="populationMean.alltrees"/>
+        <log idref="popSizes.alltrees"/>
+        <log id="sumIndicators" spec="util.Sum">
+            <arg idref="indicators.alltrees"/>
+        </log>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="1000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:SouthKorea_delta" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:SouthKorea_delta" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:SouthKorea_delta"/>
+    </logger>
+
+    <logger id="EBSPLogger" spec="Logger" fileName="EBSP.log" logEvery="5000" model="@demographic.alltrees">
+        <log idref="demographic.alltrees"/>
+    </logger>
+
+    <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+
+</run>
+
+</beast>

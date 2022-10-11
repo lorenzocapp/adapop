@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data
+id="Italy_nodelta"
+spec="Alignment"
+name="alignment">
+
+    
+
+
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+
+<run id="mcmc" spec="MCMC" chainLength="20000000">
+    <state id="state" spec="State" storeEvery="5000">
+        <tree id="Tree.t:Italy_nodelta" spec="beast.evolution.tree.Tree" name="stateNode">
+            <trait id="dateTrait.t:Italy_nodelta" spec="beast.evolution.tree.TraitSet" dateFormat="yyyy-M-dd" traitname="date" value="hCoV-19/Italy/SIC-CQRC-21021925/2021|EPI_ISL_1678018|2021-03-11=2021-03-11,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12713/2021|EPI_ISL_2171401|2021-04-21=2021-04-21,hCoV-19/Italy/LAZ-INMI-495/2021|EPI_ISL_1656474|2021-04-07=2021-04-07,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12027/2021|EPI_ISL_2143844|2021-04-21=2021-04-21,hCoV-19/Italy/CAL-AMC-21040334-DS/2021|EPI_ISL_2883864|2021-04-03=2021-04-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12408/2021|EPI_ISL_2153300|2021-04-16=2021-04-16,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-14339/2021|EPI_ISL_2282117|2021-05-12=2021-05-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13861/2021|EPI_ISL_2275862|2021-05-17=2021-05-17,hCoV-19/Italy/VEN-UniVR-169/2021|EPI_ISL_2176838|2021-03-03=2021-03-03,hCoV-19/Italy/ABR-IZSGC-273008/2021|EPI_ISL_2483623|2021-05-16=2021-05-16,hCoV-19/Italy/CAL-AOCatanzaro-06031462/2021|EPI_ISL_2622161|2021-06-03=2021-06-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13217/2021|EPI_ISL_2194443|2021-05-03=2021-05-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-9803/2021|EPI_ISL_1714988|2021-04-09=2021-04-09,hCoV-19/Italy/EMR-C039bis_21_19/2021|EPI_ISL_3215275|2021-06-18=2021-06-18,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5165/2021|EPI_ISL_1287555|2021-03-14=2021-03-14,hCoV-19/Italy/UMB-IZSGC-164630.1.32/2021|EPI_ISL_1336824|2021-03-10=2021-03-10,hCoV-19/Italy/EMR-217775-003-01/2021|EPI_ISL_2821000|2021-06-22=2021-06-22,hCoV-19/Italy/SAR-AOUSS-347/2021|EPI_ISL_2872701|2021-05-14=2021-05-14,hCoV-19/Italy/TAA-1900557375/2021|EPI_ISL_1672817|2021-04-07=2021-04-07,hCoV-19/Italy/FVG-UD-200702/2021|EPI_ISL_4301096|2021-04-08=2021-04-08,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13832/2021|EPI_ISL_2275834|2021-05-18=2021-05-18,hCoV-19/Italy/EMR-C021_21_02/2021|EPI_ISL_3184556|2021-04-24=2021-04-24,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5516/2021|EPI_ISL_1307794|2021-03-13=2021-03-13,hCoV-19/Italy/TAA-IGA-1900540862/2021|EPI_ISL_1489796|2021-03-19=2021-03-19,hCoV-19/Italy/LOM-Policlinico_Milano_87976456/2021|EPI_ISL_2620907|2021-04-08=2021-04-08,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13422/2021|EPI_ISL_2226898|2021-05-06=2021-05-06,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12029/2021|EPI_ISL_2143847|2021-04-22=2021-04-22,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-14576/2021|EPI_ISL_2357009|2021-05-07=2021-05-07,hCoV-19/Italy/TAA-1900577392/2021|EPI_ISL_2047603|2021-04-28=2021-04-28,hCoV-19/Italy/CAM-AMC-210414180-DS/2021|EPI_ISL_2884453|2021-04-14=2021-04-14,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-10654/2021|EPI_ISL_1793302|2021-04-07=2021-04-07,hCoV-19/Italy/TAA-IGA-1900560827/2021|EPI_ISL_2007328|2021-04-10=2021-04-10,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6545/2021|EPI_ISL_1447692|2021-03-07=2021-03-07,hCoV-19/Italy/LAZ-INMI-932/2021|EPI_ISL_2450368|2021-05-01=2021-05-01,hCoV-19/Italy/TAA-IGA-1900593701/2021|EPI_ISL_2372837|2021-05-19=2021-05-19,hCoV-19/Italy/LAZ-IFO-06073278/2021|EPI_ISL_2774182|2021-06-07=2021-06-07,hCoV-19/Italy/LAZ-INMI-1026/2021|EPI_ISL_2787078|2021-06-22=2021-06-22,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13734/2021|EPI_ISL_2275760|2021-05-18=2021-05-18,hCoV-19/Italy/ABR-IZSGC-133412/2021|EPI_ISL_1336781|2021-03-05=2021-03-05,hCoV-19/Italy/EMR-C044_21_22/2021|EPI_ISL_3266341|2021-06-29=2021-06-29,hCoV-19/Italy/UMB-IZSGC-130930.1.73/2021|EPI_ISL_1299567|2021-03-02=2021-03-02,hCoV-19/Italy/ABR-IZSGC-285599/2021|EPI_ISL_2600815|2021-06-01=2021-06-01,hCoV-19/Italy/CAM-AMES-40-11/2021|EPI_ISL_1298829|2021-03-04=2021-03-04,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-9784/2021|EPI_ISL_1714971|2021-04-14=2021-04-14,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12177/2021|EPI_ISL_2144048|2021-04-22=2021-04-22,hCoV-19/Italy/SIC_CQRC_1994567/2021|EPI_ISL_2925961|2021-07-01=2021-07-01,hCoV-19/Italy/TAA-1900577032/2021|EPI_ISL_2047594|2021-04-28=2021-04-28,hCoV-19/Italy/LAZ-AMC-2105181632-DS/2021|EPI_ISL_2884105|2021-05-18=2021-05-18,hCoV-19/Italy/FVG-IGA-64026153/2021|EPI_ISL_1544087|2021-03-06=2021-03-06,hCoV-19/Italy/EMR-C046_21_11/2021|EPI_ISL_3266564|2021-07-05=2021-07-05,hCoV-19/Italy/CAM-AMES_36_30/2021|EPI_ISL_1229650|2021-03-03=2021-03-03,hCoV-19/Italy/APU-IZSPB-1281PT/2021|EPI_ISL_2264865|2021-05-18=2021-05-18,hCoV-19/Italy/UMB-IZSGC-149306.1.59/2021|EPI_ISL_1321784|2021-03-02=2021-03-02,hCoV-19/Italy/CAL-TIGEM-IZSM-COLLI-6999/2021|EPI_ISL_1509371|2021-03-01=2021-03-01,hCoV-19/Italy/CAM-AMC-21052186-DS/2021|EPI_ISL_2884579|2021-05-21=2021-05-21,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5721/2021|EPI_ISL_1307972|2021-03-07=2021-03-07,hCoV-19/Italy/FVG-36697563/2021|EPI_ISL_2566227|2021-04-20=2021-04-20,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-7832/2021|EPI_ISL_1629955|2021-03-26=2021-03-26,hCoV-19/Italy/ABR-IZSGC-253205/2021|EPI_ISL_2235359|2021-05-04=2021-05-04,hCoV-19/Italy/UMB-IZSGC-233264-1-7/2021|EPI_ISL_1785248|2021-04-20=2021-04-20,hCoV-19/Italy/ABR-IZSGC-175713/2021|EPI_ISL_1502471|2021-03-23=2021-03-23,hCoV-19/Italy/ABR-IZSGC-295363/2021|EPI_ISL_2840685|2021-06-25=2021-06-25,hCoV-19/Italy/CAL-AMC-21033156-DS/2021|EPI_ISL_2883876|2021-03-31=2021-03-31,hCoV-19/Italy/SAR-Cagliari162/2021|EPI_ISL_2155027|2021-05-09=2021-05-09,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-9711/2021|EPI_ISL_1714907|2021-04-12=2021-04-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6562/2021|EPI_ISL_1447707|2021-03-06=2021-03-06,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5970/2021|EPI_ISL_1390574|2021-03-18=2021-03-18,hCoV-19/Italy/SAR-Cagliari268/2021|EPI_ISL_2536206|2021-05-31=2021-05-31,hCoV-19/Italy/TAA-IGA-1900588429/2021|EPI_ISL_2318929|2021-05-12=2021-05-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-11470/2021|EPI_ISL_2137450|2021-04-11=2021-04-11,hCoV-19/Italy/PIE-15840691/2021|EPI_ISL_2650672|2021-04-20=2021-04-20,hCoV-19/Italy/PIE-15853013/2021|EPI_ISL_2741694|2021-06-22=2021-06-22,hCoV-19/Italy/EMR-C027_21_13/2021|EPI_ISL_3185285|2021-05-12=2021-05-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-14548/2021|EPI_ISL_2356983|2021-05-09=2021-05-09,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-7095/2021|EPI_ISL_1509456|2021-03-23=2021-03-23,hCoV-19/Italy/SAR-0072/2021|EPI_ISL_1372547|2021-03-18=2021-03-18,hCoV-19/Italy/VEN-IZSVe-21RS602-3_VR/2021|EPI_ISL_1524504|2021-03-18=2021-03-18,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5578/2021|EPI_ISL_1307849|2021-03-12=2021-03-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5066/2021|EPI_ISL_1287474|2021-03-13=2021-03-13,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-9742/2021|EPI_ISL_1714935|2021-04-12=2021-04-12,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-7660/2021|EPI_ISL_1569765|2021-03-26=2021-03-26,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-17341/2021|EPI_ISL_3014299|2021-05-17=2021-05-17,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-7109/2021|EPI_ISL_1509467|2021-03-27=2021-03-27,hCoV-19/Italy/LAZ-INMI-966/2021|EPI_ISL_2522098|2021-05-10=2021-05-10,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13808/2021|EPI_ISL_2275813|2021-05-18=2021-05-18,hCoV-19/Italy/CAL-AMC-21042075-DS/2021|EPI_ISL_2884233|2021-04-20=2021-04-20,hCoV-19/Italy/MOL-21051810047/2021|EPI_ISL_2323145|2021-05-23=2021-05-23,hCoV-19/Italy/SAR-Cagliari145/2021|EPI_ISL_2138916|2021-04-27=2021-04-27,hCoV-19/Italy/ABR-IZSGC-199232/2021|EPI_ISL_1647063|2021-04-03=2021-04-03,hCoV-19/Italy/VEN-ULSS3GEN-7001684569_VE/2021|EPI_ISL_3007265|2021-06-25=2021-06-25,hCoV-19/Italy/SAR-Cagliari295/2021|EPI_ISL_2536372|2021-06-08=2021-06-08,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12613/2021|EPI_ISL_2171319|2021-04-19=2021-04-19,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6583/2021|EPI_ISL_1447725|2021-03-02=2021-03-02,hCoV-19/Italy/UMB-IZSGC-267459.1.37/2021|EPI_ISL_2235473|2021-05-06=2021-05-06,hCoV-19/Italy/PIE-15850200/2021|EPI_ISL_2650949|2021-05-18=2021-05-18,hCoV-19/Italy/LAZ-INMI-1353/2021|EPI_ISL_3014014|2021-07-09=2021-07-09,hCoV-19/Italy/TAA-IGA-1900600111/2021|EPI_ISL_2517115|2021-05-28=2021-05-28,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12840/2021|EPI_ISL_2171508|2021-04-30=2021-04-30,hCoV-19/Italy/VEN-IZSVe-21RS1716-1_VI/2021|EPI_ISL_2975269|2021-06-26=2021-06-26,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-14142/2021|EPI_ISL_2281936|2021-05-09=2021-05-09,hCoV-19/Italy/EMR-C09b_21_05/2021|EPI_ISL_3100483|2021-03-17=2021-03-17,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6613/2021|EPI_ISL_1447753|2021-03-08=2021-03-08,hCoV-19/Italy/UMB-IZSGC-179786.1.43/2021|EPI_ISL_1499631|2021-03-23=2021-03-23,hCoV-19/Italy/LAZ-IFO-07153181/2021|EPI_ISL_3068260|2021-07-15=2021-07-15,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5255/2021|EPI_ISL_1287638|2021-03-14=2021-03-14,hCoV-19/Italy/LAZ-IZSLT-21066737/2021|EPI_ISL_2246281|2021-05-18=2021-05-18,hCoV-19/Italy/LAZ-INMI-539/2021|EPI_ISL_1825091|2021-04-21=2021-04-21,hCoV-19/Italy/UMB-IZSGC-204388-1-5/2021|EPI_ISL_1670599|2021-03-30=2021-03-30,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-11882/2021|EPI_ISL_2143644|2021-04-08=2021-04-08,hCoV-19/Italy/LAZ-IFO-03020377/2021|EPI_ISL_2576944|2021-03-31=2021-03-31,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-17128/2021|EPI_ISL_3014137|2021-07-03=2021-07-03,hCoV-19/Italy/VEN-UniVR-162/2021|EPI_ISL_2176813|2021-04-02=2021-04-02,hCoV-19/Italy/ABR-IZSGC-208713/2021|EPI_ISL_1707568|2021-04-10=2021-04-10,hCoV-19/Italy/EMR-C09a_21_12/2021|EPI_ISL_3087833|2021-03-15=2021-03-15,hCoV-19/Italy/ABR-IZSGC-283222/2021|EPI_ISL_2483685|2021-05-27=2021-05-27,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-18483/2021|EPI_ISL_3270793|2021-04-28=2021-04-28,hCoV-19/Italy/EMR-C036_21_33/2021|EPI_ISL_3215173|2021-06-03=2021-06-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-5997/2021|EPI_ISL_1390600|2021-03-18=2021-03-18,hCoV-19/Italy/ABR-IZSGC-281463/2021|EPI_ISL_2483662|2021-05-25=2021-05-25,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-7849/2021|EPI_ISL_1629968|2021-03-26=2021-03-26,hCoV-19/Italy/VEN-IZSVe-21RS1020-7_VR/2021|EPI_ISL_2392075|2021-04-20=2021-04-20,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-16509/2021|EPI_ISL_2725295|2021-06-03=2021-06-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13599/2021|EPI_ISL_2227066|2021-04-28=2021-04-28,hCoV-19/Italy/PIE-15826486/2021|EPI_ISL_2650868|2021-03-18=2021-03-18,hCoV-19/Italy/ABR-IZSGC-182808/2021|EPI_ISL_1580505|2021-03-26=2021-03-26,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-11932/2021|EPI_ISL_2143707|2021-04-17=2021-04-17,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-11424/2021|EPI_ISL_2137415|2021-04-11=2021-04-11,hCoV-19/Italy/SIC-AOUP-UNIPA_84958/2021|EPI_ISL_3128512|2021-07-19=2021-07-19,hCoV-19/Italy/ABR-IZSGC-177553/2021|EPI_ISL_1502500|2021-03-23=2021-03-23,hCoV-19/Italy/PIE-01641142/2021|EPI_ISL_3834383|2021-03-03=2021-03-03,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-14698/2021|EPI_ISL_2357108|2021-05-10=2021-05-10,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-13559/2021|EPI_ISL_2227027|2021-04-13=2021-04-13,hCoV-19/Italy/BAS-ASM-48/2021|EPI_ISL_3127425|2021-07-10=2021-07-10,hCoV-19/Italy/PIE-15840904/2021|EPI_ISL_2650625|2021-04-20=2021-04-20,hCoV-19/Italy/VEN-IZSVe-21RS603-2_RO/2021|EPI_ISL_1524658|2021-03-16=2021-03-16,hCoV-19/Italy/SIC_CQRC_2018106/2021|EPI_ISL_2925899|2021-07-07=2021-07-07,hCoV-19/Italy/LOM-HSacco182/2021|EPI_ISL_1797464|2021-04-20=2021-04-20,hCoV-19/Italy/TAA-1900539880/2021|EPI_ISL_1406305|2021-03-18=2021-03-18,hCoV-19/Italy/ABR-IZSGC-273310/2021|EPI_ISL_2483628|2021-05-17=2021-05-17,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-8886/2021|EPI_ISL_1673391|2021-04-02=2021-04-02,hCoV-19/Italy/EMR-C09a_21_01/2021|EPI_ISL_3087841|2021-03-15=2021-03-15,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-12068/2021|EPI_ISL_2143909|2021-04-22=2021-04-22,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6539/2021|EPI_ISL_1447686|2021-03-07=2021-03-07,hCoV-19/Italy/EMR-C041_21_37/2021|EPI_ISL_3266261|2021-06-23=2021-06-23,hCoV-19/Italy/EMR-C038_21_07/2021|EPI_ISL_3215255|2021-06-07=2021-06-07,hCoV-19/Italy/TAA-IGA-1900572769/2021|EPI_ISL_1840770|2021-04-23=2021-04-23,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-6063/2021|EPI_ISL_1390654|2021-03-18=2021-03-18,hCoV-19/Italy/VEN-IZSVe-21RS593-3_VE/2021|EPI_ISL_1524617|2021-03-16=2021-03-16,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-9032/2021|EPI_ISL_1673515|2021-04-04=2021-04-04,hCoV-19/Italy/CAM-TIGEM-IZSM-COLLI-16753/2021|EPI_ISL_2844378|2021-06-20=2021-06-20">
+                <taxa id="TaxonSet.Italy_nodelta" spec="TaxonSet">
+                    <alignment idref="Italy_nodelta"/>
+                </taxa>
+            </trait>
+            <taxonset idref="TaxonSet.Italy_nodelta"/>
+        </tree>
+        <parameter id="clockRate.c:Italy_nodelta" spec="parameter.RealParameter" lower="8.0E-4" name="stateNode" upper="0.001">9.0E-4</parameter>
+        <parameter id="kappa.s:Italy_nodelta" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+        <stateNode id="indicators.alltrees" spec="parameter.BooleanParameter">false</stateNode>
+        <parameter id="populationMean.alltrees" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+        <parameter id="popSizes.alltrees" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+    </state>
+
+    <init id="RandomTree.t:Italy_nodelta" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:Italy_nodelta" taxa="@Italy_nodelta">
+        <populationModel id="ConstantPopulation0.t:Italy_nodelta" spec="ConstantPopulation">
+            <parameter id="randomPopSize.t:Italy_nodelta" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+        </populationModel>
+    </init>
+
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="ExtendedBayesianSkyline.t:Italy_nodelta" spec="Coalescent">
+                <populationModel id="scaledDemo.t:Italy_nodelta" spec="ScaledPopulationFunction">
+                    <population id="demographic.alltrees" spec="CompoundPopulationFunction" populationIndicators="@indicators.alltrees" populationSizes="@popSizes.alltrees">
+                        <itree id="treeIntervals.t:Italy_nodelta" spec="TreeIntervals" tree="@Tree.t:Italy_nodelta"/>
+                    </population>
+                    <parameter id="RealParameter.3" spec="parameter.RealParameter" lower="0.0" name="factor" upper="0.0">1.0</parameter>
+                </populationModel>
+                <treeIntervals idref="treeIntervals.t:Italy_nodelta"/>
+            </distribution>
+            <prior id="ClockPrior.c:Italy_nodelta" name="distribution" x="@clockRate.c:Italy_nodelta">
+                <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+            </prior>
+            <prior id="indicatorsPrior.alltrees" name="distribution">
+                <x id="indsSun.alltrees" spec="util.Sum">
+                    <arg idref="indicators.alltrees"/>
+                </x>
+                <distr id="Poisson.EBSP" spec="beast.math.distributions.Poisson">
+                    <parameter id="RealParameter.4" spec="parameter.RealParameter" estimate="false" name="lambda" upper="0.0">0.69314718056</parameter>
+                </distr>
+            </prior>
+            <prior id="KappaPrior.s:Italy_nodelta" name="distribution" x="@kappa.s:Italy_nodelta">
+                <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                    <parameter id="RealParameter.1" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                    <parameter id="RealParameter.2" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                </LogNormal>
+            </prior>
+            <prior id="popSizePrior.alltrees" name="distribution" x="@popSizes.alltrees">
+                <Exponential id="popPriorDist.EBSP" mean="@populationMean.alltrees" name="distr"/>
+            </prior>
+            <prior id="populationMeanPrior.alltrees" name="distribution" x="@populationMean.alltrees">
+                <OneOnX id="OneOnX.EBSP" name="distr"/>
+            </prior>
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+            <distribution id="treeLikelihood.Italy_nodelta" spec="ThreadedTreeLikelihood" data="@Italy_nodelta" tree="@Tree.t:Italy_nodelta">
+                <siteModel id="SiteModel.s:Italy_nodelta" spec="SiteModel">
+                    <parameter id="mutationRate.s:Italy_nodelta" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="gammaShape.s:Italy_nodelta" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                    <parameter id="proportionInvariant.s:Italy_nodelta" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel id="hky.s:Italy_nodelta" spec="HKY" kappa="@kappa.s:Italy_nodelta">
+                        <frequencies id="empiricalFreqs.s:Italy_nodelta" spec="Frequencies" data="@Italy_nodelta"/>
+                    </substModel>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:Italy_nodelta" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:Italy_nodelta"/>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <operator id="StrictClockRateScaler.c:Italy_nodelta" spec="ScaleOperator" parameter="@clockRate.c:Italy_nodelta" scaleFactor="0.913" weight="3.0"/>
+
+    <operator id="strictClockUpDownOperator.c:Italy_nodelta" spec="UpDownOperator" scaleFactor="0.862" weight="3.0">
+        <up idref="clockRate.c:Italy_nodelta"/>
+        <down idref="Tree.t:Italy_nodelta"/>
+    </operator>
+
+    <operator id="KappaScaler.s:Italy_nodelta" spec="ScaleOperator" parameter="@kappa.s:Italy_nodelta" scaleFactor="0.5" weight="0.1"/>
+
+    <operator id="ExtendedBayesianSkylineTreeScaler.t:Italy_nodelta" spec="ScaleOperator" scaleFactor="0.952" tree="@Tree.t:Italy_nodelta" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineTreeRootScaler.t:Italy_nodelta" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:Italy_nodelta" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineUniformOperator.t:Italy_nodelta" spec="Uniform" tree="@Tree.t:Italy_nodelta" weight="30.0"/>
+
+    <operator id="ExtendedBayesianSkylineSubtreeSlide.t:Italy_nodelta" spec="SubtreeSlide" tree="@Tree.t:Italy_nodelta" size="0.215" weight="15.0"/>
+
+    <operator id="ExtendedBayesianSkylineNarrow.t:Italy_nodelta" spec="Exchange" tree="@Tree.t:Italy_nodelta" weight="15.0"/>
+
+    <operator id="ExtendedBayesianSkylineWide.t:Italy_nodelta" spec="Exchange" isNarrow="false" tree="@Tree.t:Italy_nodelta" weight="3.0"/>
+
+    <operator id="ExtendedBayesianSkylineWilsonBalding.t:Italy_nodelta" spec="WilsonBalding" tree="@Tree.t:Italy_nodelta" weight="3.0"/>
+
+    <operator id="bitflip.alltrees" spec="BitFlipOperator" parameter="@indicators.alltrees" weight="30.0"/>
+
+    <operator id="indicatorSampler.alltrees" spec="SampleOffValues" dist="@popPriorDist.EBSP" indicators="@indicators.alltrees" values="@popSizes.alltrees" weight="15.0"/>
+
+    <operator id="indicatorScaler.alltrees" spec="ScaleOperator" degreesOfFreedom="1" indicator="@indicators.alltrees" parameter="@popSizes.alltrees" scaleFactor="0.5" weight="15.0"/>
+
+    <operator id="EBSPupDownOperator.alltrees" spec="UpDownOperator" scaleFactor="0.7" weight="5.0">
+        <up idref="popSizes.alltrees"/>
+        <up idref="populationMean.alltrees"/>
+    </operator>
+
+    <logger id="tracelog" spec="Logger" fileName="Italy_nodelta.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.Italy_nodelta"/>
+        <log id="TreeHeight.t:Italy_nodelta" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:Italy_nodelta"/>
+        <log idref="clockRate.c:Italy_nodelta"/>
+        <log idref="kappa.s:Italy_nodelta"/>
+        <log idref="ExtendedBayesianSkyline.t:Italy_nodelta"/>
+        <log idref="indicators.alltrees"/>
+        <log idref="populationMean.alltrees"/>
+        <log idref="popSizes.alltrees"/>
+        <log id="sumIndicators" spec="util.Sum">
+            <arg idref="indicators.alltrees"/>
+        </log>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="1000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:Italy_nodelta" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:Italy_nodelta" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:Italy_nodelta"/>
+    </logger>
+
+    <logger id="EBSPLogger" spec="Logger" fileName="EBSP.log" logEvery="5000" model="@demographic.alltrees">
+        <log idref="demographic.alltrees"/>
+    </logger>
+
+    <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+
+</run>
+
+</beast>
