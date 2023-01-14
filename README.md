@@ -2,9 +2,9 @@
 
 
 ### Required package:
-* [`adapref`](https://github.com/lorenzocapp/adapref){:target="_blank"}
-* [`phylodyn`](https://github.com/JuliaPalacios/phylodyn){:target="_blank"}
-* [`ape`](https://cran.r-project.org/web/packages/ape/index.html){:target="_blank"}
+* [`adapref`](https://github.com/lorenzocapp/adapref)
+* [`phylodyn`](https://github.com/JuliaPalacios/phylodyn)
+* [`ape`](https://cran.r-project.org/web/packages/ape/index.html)
 
 
 
@@ -47,4 +47,4 @@ The GISAID EPI_SET IDs and DOI for web viewing can be found in Table S2 of the S
 #### XML
 This folder contains BEAST2 xml files. 
 
-The data block has been removed. The necessary genetic data can be downloaded from GISAID using the IDs in the [GISAID_IDs](real_data/GISAID_IDs){:target="_blank"} folder. 
+The data block has been removed. The necessary genetic data can be downloaded from GISAID using the IDs in the [GISAID_IDs](real_data/GISAID_IDs) folder. 
