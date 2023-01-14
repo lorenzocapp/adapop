@@ -1,7 +1,7 @@
 # adapop_numexp
 This repository contains codes to reproduce our numerical experiments and data files for SARS-CoV-2 application using our implemented R package [`adapref`](https://github.com/lorenzocapp/adapref). The details of our method can be found in [our paper](). 
 
-### Required package
+### Required packages
 * [`adapref`](https://github.com/lorenzocapp/adapref)
 * [`phylodyn`](https://github.com/JuliaPalacios/phylodyn)
 * [`ape`](https://cran.r-project.org/web/packages/ape/index.html)
