@@ -1,5 +1,5 @@
 # adapop_numexp
-This repository contains codes to reproduce our numerical experiment and data files for SARS-CoV-2 application using our implemented R package [`adapref`](https://github.com/lorenzocapp/adapref). The details of our method can be found in [our paper](). 
+This repository contains codes to reproduce our numerical experiments and data files for SARS-CoV-2 application using our implemented R package [`adapref`](https://github.com/lorenzocapp/adapref). The details of our method can be found in [our paper](). 
 
 ### Required package
 * [`adapref`](https://github.com/lorenzocapp/adapref)
@@ -9,7 +9,7 @@ This repository contains codes to reproduce our numerical experiment and data fi
 
 ### Simulation pipeline
 1. `data_generation.R`
-Generate all simulated dataset and save to *data* folder. 
+Generate all simulated dataset and save the synthetic data to *data* folder. 
 Requires `scenarios.R` that contains all dependent populations' scenarios considered in the numerical experiments.  
 
 2. `master_inla_simulations.R`
