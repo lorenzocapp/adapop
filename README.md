@@ -1,5 +1,5 @@
 # adapop_numexp
-This repository contains codes to reproduce our numerical experiment and SARS-CoV-2 application using our implemented R package [`adapref`](https://github.com/lorenzocapp/adapref). The details of our method can be found in [our paper](). 
+This repository contains codes to reproduce our numerical experiment and data files for SARS-CoV-2 application using our implemented R package [`adapref`](https://github.com/lorenzocapp/adapref). The details of our method can be found in [our paper](). 
 
 ### Required package
 * [`adapref`](https://github.com/lorenzocapp/adapref)
@@ -9,7 +9,7 @@ This repository contains codes to reproduce our numerical experiment and SARS-Co
 
 ### Simulation pipeline
 1. `data_generation.R`
-Generate all the simulated dataset in a *data* folder. 
+Generate all simulated dataset and save to *data* folder. 
 Requires `scenarios.R` that contains all dependent populations' scenarios considered in the numerical experiments.  
 
 2. `master_inla_simulations.R`
@@ -18,7 +18,7 @@ Requires `functions_inla_selection.R` that contains the beta version of *adapref
 
 
 ### Real data application
-`real_data` folder contains relevant files used for reproducing the real data analyses of delta and non-delta SARS-CoV-2 sequences from South Korea and Italy.
+`real_data` folder contains relevant files used for reproducing the real data analyses of delta and non-delta SARS-CoV-2 sequences from South Korea and Italy. The published results were generated using our R package *adapref*.
 
 * `GISAID_IDs`
 Each file contains 150 sequences. The GISAID EPI_SET IDs and DOI for web viewing can be found in Table S2 of the Supporting Information of the manuscript.   
