@@ -1,5 +1,3 @@
-
-
 library(adapref)
 n <- 200
 scez <-seq(1,5)
@@ -30,14 +28,9 @@ samp_times2<-c(0,sampsim_thin(max.n=n-2,traj=sampling_traj,xlim=c(0,3))[-n+1])
 n_sampled2 <- c(2,rep(1,n-2)) # simulation like this it will be like this.
 
 
-
-
-
 #########
 #### Sampling
 ###
-
-
 
 simulation1<-coalsim(samp_times=samp_times1-min(samp_times1),n=n_sampled1,traj=covid_exp1)
 tree1<-sample_genealogy(simulation1)

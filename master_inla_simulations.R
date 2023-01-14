@@ -1,10 +1,3 @@
-
-#dir <- '/Users/lorenzocappello/Google Drive/Statistics/postdoc Palacios/delta_covid_attempt/selection_model_delta_simulations/'
-
-
-#setwd(dir)
-#setwd("/Users/cappello/Google Drive/postdoc Palacios/stanford_covid/selection_model_trial")
-
 source("functions_inla_selection.R") #where the new functions should be stored 
 library("phylodyn")
 library("ape")
