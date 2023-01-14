@@ -18,7 +18,7 @@ Requires `functions_inla_selection.R` that contains the beta version of *adapref
 
 
 ### Real data application
-`real_data` folder contains relevant files used for reproducing the real data analyses of delta and non-delta SARS-CoV-2 sequences from South Korea and Italy. The published results were generated using our R package *adapref*.
+`real_data` folder contains relevant files used for the real data analyses of delta and non-delta SARS-CoV-2 sequences from South Korea and Italy. The published results were generated using our R package *adapref*.
 
 * `GISAID_IDs`
 Each file contains 150 sequences. The GISAID EPI_SET IDs and DOI for web viewing can be found in Table S2 of the Supporting Information of the manuscript.   
